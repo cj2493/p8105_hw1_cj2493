@@ -84,3 +84,5 @@ ggsave("logical_plot.pdf", plot = logical_plot, path = "./")
 ```
 
 ### Comments
+
+The color options for the logical and factor plots are the same; they both only have two options. This is because there are only discrete different options for values in these vectors (true or false, and the given levels). However, the color options for the numeric plot exists on a gradient, because in a numeric vector, the values can be anything from negative infinity to positive inifinity. 
