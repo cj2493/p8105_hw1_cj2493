@@ -27,7 +27,7 @@ char_mean = mean(problem_1_df$vec_char)
 factor_mean = mean(problem_1_df$vec_factor)
 ```
 
-## What works and doesn't work when taking means?
+### What works and doesn't work when taking means?
 
 The mean(x) function works for the numerical and logical vectors, but not for the character and factor vectors.
 
@@ -37,7 +37,7 @@ convert_char = as.numeric(problem_1_df$vec_char)
 convert_factor = as.numeric(problem_1_df$vec_factor)
 ```
 
-## What happened?
+### What happened?
 
 The logical and factor vectors were converted to a numeric vector, but the character vector was not. 
 
@@ -48,7 +48,7 @@ factor_to_char = as.character(problem_1_df$vec_factor)
 convert_factor_2 = as.numeric(factor_to_char)
 ```
 
-##What happened?
+### What happened?
 
 Now, the character vector was successfully converted to a numeric vector with a factor step in the middle. However, now we cannot convert the factor vector to numeric via a character step in the middle. 
 
@@ -65,7 +65,22 @@ problem_2_df = tibble(
 )
 ```
 
-## Description of the Vector
+### Description of the Vector
 
+The size of the dataset is `r length(problem_2_df$x) ` by `r length(problem_2_df$y)`. 
+The mean of x is `r mean(problem_2_df$x)` and the median of x is `r median(problem_2_df$x)`. 
+The proportion of cases for which the logical vector is true is `r sum(problem_2_df$is_positive_num)/1000`.
 
+```{r, scatter_plot}
+logical_plot = ggplot(problem_2_df, aes(x = y, y = x, color = is_positive)) + geom_point()
+numeric_plot = ggplot(problem_2_df, aes(x = y, y = x, color = is_positive_num)) + geom_point()
+factor_plot = ggplot(problem_2_df, aes(x = y, y = x, color = is_positive_factor)) + geom_point()
 
+logical_plot
+numeric_plot
+factor_plot
+
+ggsave("logical_plot.pdf", plot = logical_plot, path = "./")
+```
+
+### Comments
