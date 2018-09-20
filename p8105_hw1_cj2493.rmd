@@ -71,23 +71,30 @@ problem_2_df = tibble(
 )
 ```
 
-Describe the Vector with inline R code:
+Describe the Data with inline R code:
 
-The size of the dataset is `r length(problem_2_df$x) ` by `r length(problem_2_df$y)`. 
+The size of the dataset is `r ncol(problem_2_df)` vectors with `r nrow(problem_2_df)` observations in each.
 The mean of x is `r mean(problem_2_df$x)` and the median of x is `r median(problem_2_df$x)`. 
 The proportion of cases for which the logical vector is true is `r sum(problem_2_df$is_positive_num)/1000`.
 
 Now, make scatterplots of y vs x, alternatively coloring points using the logical, numeric, and factor vectors.
 
-```{r, scatter_plot}
-logical_plot = ggplot(problem_2_df, aes(x = y, y = x, color = is_positive)) + geom_point()
-numeric_plot = ggplot(problem_2_df, aes(x = y, y = x, color = is_positive_num)) + geom_point()
-factor_plot = ggplot(problem_2_df, aes(x = y, y = x, color = is_positive_factor)) + geom_point()
-
+```{r, scatter_plot_1}
+logical_plot = ggplot(problem_2_df, aes(x = x, y = y, color = is_positive)) + geom_point()
 logical_plot
-numeric_plot
-factor_plot
+```
 
+```{r, scatter_plot_2}
+numeric_plot = ggplot(problem_2_df, aes(x = x, y = y, color = is_positive_num)) + geom_point()
+numeric_plot
+```
+
+```{r, scatter_plot_3}
+factor_plot = ggplot(problem_2_df, aes(x = x, y = y, color = is_positive_factor)) + geom_point()
+factor_plot
+```
+
+```{r, save_plot}
 ggsave("logical_plot.pdf", plot = logical_plot, path = "./")
 ```
 
